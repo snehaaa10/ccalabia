@@ -32,3 +32,11 @@ Phase 3: Settings & Execution:
 • Enable 3D Acceleration: Check this box.
 3.	Confirm: Click OK.
 4.	Launch: Click Start to run the Virtual Machine.
+
+Phase 4:Execute a program
+Program:
+#include <stdio.h>
+void main() {
+    printf("Hello, World!\n");
+}
+to get output: ./a.out
