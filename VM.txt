@@ -19,7 +19,7 @@ Phase 2: Creating the Virtual Machine:
 • Click the Folder icon to browse.
 • Click the Add symbol.
 • Go to the Ubuntu NS2 folder.
-• Select the file "ubuntuns2010".
+• Select the file "ubuntunsS010".
 • Click Choose, then click Next.
 5.	Finish: Click the Finish button to create the VM.
 
