@@ -1,0 +1,71 @@
+Task 02-Git commands:
+
+1. Initial Git Configuration(In terminal):
+
+Before working with repositories, the global user identity and default editor were set up:
+
+Check Version: git --version (Confirmed version 2.45.2.windows.1)
+
+Set Username: git config --global user.name "CCA"
+
+Set Email: git config --global user.email "24aiml062@bnmit.in"
+
+Set Default Editor: git config --global user.editor "code --wait" (Sets VS Code as the editor)
+
+Verify Config: git config --global -e (Opens the configuration file for review)
+
+2. Local Repository & Commits:
+
+Steps taken to initialize a project and track changes:
+
+Initialize: git init (Initializes or reinitializes the repository)
+
+Stage File: git add print.c (Adds a specific file to the staging area)
+
+First Commit: git commit -m "initial commit"
+
+View History: git log commit [paste code URL] (Displays the commit hash, author, and date)
+
+Stage All Changes: git add . (Adds all modified files in the directory)
+
+Second Commit: git commit -m "second change"
+
+3. Navigation & Branching:
+
+Exploring the "Detached HEAD" state and creating branches:
+
+Checkout Specific Commit: git checkout [paste code URL] (Switches the working directory to the state of the first commit)
+
+Check Status: git status (Confirms the HEAD is detached at the specific hash)
+
+Return to Main Branch: git checkout master
+
+Create Branches:
+
+git branch child1
+
+git branch child2
+
+List Branches: git branch (The * indicates the currently active branch, which is master)
+
+git status
+
+4. Remote Operations (GitHub):
+
+Synchronizing the local repository with a remote GitHub repository (ccalab.git):
+
+Push Changes: git push -u origin main (Uploads local commits to the remote main branch and sets up tracking)
+
+Pull Changes: git pull origin main (Fetches changes from the remote repository and merges them into the local branch)
+
+Result: A "Fast-forward" update was performed on print.c.
+
+Summary of Workflow Logic:
+
+Modify files in the working directory.
+
+Stage files using git add.
+
+Commit files to the local history using git commit.
+
+Push/Pull to stay in sync with the remote GitHub server.
