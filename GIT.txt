@@ -56,16 +56,9 @@ Synchronizing the local repository with a remote GitHub repository (ccalab.git):
 
 Push Changes: git push -u origin main (Uploads local commits to the remote main branch and sets up tracking)
 
+Merge : git merge origin main
+
 Pull Changes: git pull origin main (Fetches changes from the remote repository and merges them into the local branch)
 
 Result: A "Fast-forward" update was performed on print.c.
 
-Summary of Workflow Logic:
-
-Modify files in the working directory.
-
-Stage files using git add.
-
-Commit files to the local history using git commit.
-
-Push/Pull to stay in sync with the remote GitHub server.
