@@ -1,0 +1,110 @@
+Task 3: CloudSim Setup and Execution
+
+Phase 1: Downloading Resources:
+1.	Google Search: Search for "cloudsim 3.03".
+2.	Download CloudSim: Click the first link, scroll down to cloudsim 3.03, and under Assets, download the .zip file.
+3.	Extract: Extract all files from the downloaded CloudSim zip.
+4.	Google Search: Search for "apache common math 3.6.1 zip file".
+5.	Locate Binary: Go to the "Index of /common/math/binaries" (the second link).
+6.	Download Math Library: Download commons-math3-3.6.1-bin.zip.
+7.	Extract: Extract all files from the math library zip.
+
+Phase 2: Organizing Files:
+1.	Copy JAR: Open the extracted math library folder and copy the first file (named something like commons-math3-3.6.1).
+2.	Paste to CloudSim: Open your extracted cloudsim folder and paste the copied file into the "jars" folder.
+3.	Launch IDE: Open Eclipse.
+
+Phase 3: Eclipse Configuration:
+1.	Create Project: Create a new Java Project named cloudsim1.
+2.	Set Location: Browse and choose the cloudsim 3.03 folder as the location.
+3.	Working Set: Click on "Add project to working set".
+4.	Finish: Click the Finish button.
+
+Phase 4: Running and Creating Programs:
+1.	Navigate to Examples: On the left-side Project Explorer, navigate through:
+• cloudsim1
+• examples folder
+• org.cloudbus.cloudsim.examples
+• CloudSimExample1.java
+2.	Execute: Save and Run the example.
+3.	Create New Class: To write your own program:
+• Right-click on the package.
+• Select New \rightarrow Class.
+• Give it a name (e.g., classname.java).
+• Write your program.
+
+Program:
+
+import org.cloudbus.cloudsim.*;
+import org.cloudbus.cloudsim.core.CloudSim;
+import org.cloudbus.cloudsim.provisioners.BwProvisionerSimple;
+import org.cloudbus.cloudsim.provisioners.PeProvisionerSimple;
+import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
+import java.util.*;
+ 
+public class FCFS_Example {
+   public static void main(String[] args) {
+       try {
+           // Step 1: Initialize CloudSim
+           int numUser = 1;
+           Calendar calendar = Calendar.getInstance();
+           CloudSim.init(numUser, calendar, false);
+ 
+           // Step 2: Create Datacenter
+           Datacenter datacenter0 = createDatacenter("Datacenter_0");
+ 
+           // Step 3: Create Broker
+           DatacenterBroker broker = new DatacenterBroker("Broker");
+           int brokerId = broker.getId();
+ 
+           // Step 4: Create VM with SpaceShared Scheduler (Acts as FCFS)
+           List<Vm> vmlist = new ArrayList<>();
+           Vm vm = new Vm(0, brokerId, 1000, 1, 512, 1000, 10000, "Xen", new CloudletSchedulerSpaceShared());
+           vmlist.add(vm);
+           broker.submitVmList(vmlist);
+ 
+           // Step 5: Create Cloudlets (Tasks)
+           List<Cloudlet> cloudletList = new ArrayList<>();
+           UtilizationModel model = new UtilizationModelFull();
+           
+           // Task 1: Long task, Task 2: Short task
+           Cloudlet c1 = new Cloudlet(0, 40000, 1, 300, 300, model, model, model);
+           c1.setUserId(brokerId);
+           Cloudlet c2 = new Cloudlet(1, 10000, 1, 300, 300, model, model, model);
+           c2.setUserId(brokerId);
+ 
+           cloudletList.add(c1);
+           cloudletList.add(c2);
+           broker.submitCloudletList(cloudletList);
+ 
+           // Step 6: Start Simulation
+           CloudSim.startSimulation();
+           List<Cloudlet> newList = broker.getCloudletReceivedList();
+           CloudSim.stopSimulation();
+ 
+           // Print Results
+           printCloudletList(newList);
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+   }
+ 
+   private static Datacenter createDatacenter(String name) {
+       List<Host> hostList = new ArrayList<>();
+       List<Pe> peList = new ArrayList<>();
+       peList.add(new Pe(0, new PeProvisionerSimple(1000)));
+       hostList.add(new Host(0, new RamProvisionerSimple(2048), new BwProvisionerSimple(10000), 1000000, peList, new VmSchedulerTimeShared(peList)));
+       
+       DatacenterCharacteristics characteristics = new DatacenterCharacteristics("x86", "Linux", "Xen", hostList, 10.0, 3.0, 0.05, 0.1, 0.1);
+       try {
+           return new Datacenter(name, characteristics, new VmAllocationPolicySimple(hostList), new LinkedList<>(), 0);
+       } catch (Exception e) { return null; }
+   }
+ 
+   private static void printCloudletList(List<Cloudlet> list) {
+       System.out.println("Cloudlet ID | Status | Finish Time");
+       for (Cloudlet c : list) {
+           System.out.println(c.getCloudletId() + " | SUCCESS | " + c.getFinishTime());
+       }
+   }
+}
