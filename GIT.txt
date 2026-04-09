@@ -1,64 +1,83 @@
 Task 02-Git commands:
 
-1. Initial Git Configuration(In terminal):
 
-Before working with repositories, the global user identity and default editor were set up:
+prerana <prerana.mohans@gmail.com>
+12:29 PM (8 minutes ago)
+to me
 
-Check Version: git --version (Confirmed version 2.45.2.windows.1)
+PS C:\Users\Bnmit\Documents\blala> git init
+Initialized empty Git repository in C:/Users/Bnmit/Documents/blala/.git/
+PS C:\Users\Bnmit\Documents\blala> git add .
+PS C:\Users\Bnmit\Documents\blala> git commit -m "initiank"
+[master (root-commit) 7b084e5] initiank
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 print.py
+PS C:\Users\Bnmit\Documents\blala> git branch -M main
+PS C:\Users\Bnmit\Documents\blala> git remote add origin https://github.com/snehaaa10/qwert.git
+PS C:\Users\Bnmit\Documents\blala> git push origin main
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 209 bytes | 209.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/snehaaa10/qwert.git
+ * [new branch]      main -> main
+PS C:\Users\Bnmit\Documents\blala> git status
+On branch main
+nothing to commit, working tree clean
+PS C:\Users\Bnmit\Documents\blala> git add .                                                  
+PS C:\Users\Bnmit\Documents\blala> git commit -m "initiank"                                    
+[main 00620ad] initiank
+ 1 file changed, 1 insertion(+)
+PS C:\Users\Bnmit\Documents\blala> git branch -M main                                          
+PS C:\Users\Bnmit\Documents\blala> git push origin main    
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Writing objects: 100% (3/3), 254 bytes | 254.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/snehaaa10/qwert.git
+   7b084e5..00620ad  main -> main
+PS C:\Users\Bnmit\Documents\blala> git checkout -b child
+Switched to a new branch 'child'
+PS C:\Users\Bnmit\Documents\blala> git branch
+* child
+  main
 
-Set Username: git config --global user.name "CCA"
+--> create a new file and write some code
 
-Set Email: git config --global user.email "24aiml062@bnmit.in"
+PS C:\Users\Bnmit\Documents\blala> git add .              
+PS C:\Users\Bnmit\Documents\blala> git commit -m "initiank"
+[child 9112fdd] initiank
+ 1 file changed, 1 insertion(+)
+ create mode 100644 pri.py
 
-Set Default Editor: git config --global user.editor "code --wait" (Sets VS Code as the editor)
+PS C:\Users\Bnmit\Documents\blala> git push --set-upstream origin child
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 275 bytes | 275.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+remote:
+remote: Create a pull request for 'child' on GitHub by visiting:
+remote:      https://github.com/snehaaa10/qwert/pull/new/child
+remote:
+To https://github.com/snehaaa10/qwert.git
+ * [new branch]      child -> child
+branch 'child' set up to track 'origin/child'.
 
-Verify Config: git config --global -e (Opens the configuration file for review)
+-->go to github and merge the request and everything
+-->make changes on github and pull
 
-2. Local Repository & Commits:
-
-Steps taken to initialize a project and track changes:
-
-Initialize: git init (Initializes or reinitializes the repository)
-
-Stage File: git add print.c (Adds a specific file to the staging area)
-
-First Commit: git commit -m "initial commit"
-
-View History: git log commit [paste code URL] (Displays the commit hash, author, and date)
-
-Stage All Changes: git add . (Adds all modified files in the directory)
-
-Second Commit: git commit -m "second change"
-
-3. Navigation & Branching:
-
-Exploring the "Detached HEAD" state and creating branches:
-
-Checkout Specific Commit: git checkout [paste code URL] (Switches the working directory to the state of the first commit)
-
-Check Status: git status (Confirms the HEAD is detached at the specific hash)
-
-Return to Main Branch: git checkout master
-
-Create Branches:
-
-git branch child1
-
-git branch child2
-
-List Branches: git branch (The * indicates the currently active branch, which is master)
-
-git status
-
-4. Remote Operations (GitHub):
-
-Synchronizing the local repository with a remote GitHub repository (ccalab.git):
-
-Push Changes: git push -u origin main (Uploads local commits to the remote main branch and sets up tracking)
-
-Merge : git merge origin main
-
-Pull Changes: git pull origin main (Fetches changes from the remote repository and merges them into the local branch)
-
-Result: A "Fast-forward" update was performed on print.c.
-
+PS C:\Users\Bnmit\Documents\blala> git pull origin main
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (4/4), 1.75 KiB | 85.00 KiB/s, done.
+From https://github.com/snehaaa10/qwert
+ * branch            main       -> FETCH_HEAD
+   00620ad..6696c4f  main       -> origin/main
+Updating 9112fdd..6696c4f
+Fast-forward
+ pri.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
