@@ -1,10 +1,5 @@
 Task 02-Git commands:
 
-
-prerana <prerana.mohans@gmail.com>
-12:29 PM (8 minutes ago)
-to me
-
 PS C:\Users\Bnmit\Documents\blala> git init
 Initialized empty Git repository in C:/Users/Bnmit/Documents/blala/.git/
 PS C:\Users\Bnmit\Documents\blala> git add .
